@@ -96,7 +96,7 @@ fn test_diff_basic() {
     [EOF]
     ");
 
-    let template = r#"source.path() ++ ' => ' ++ target.path() ++ ' (' ++ status ++ ")\n""#;
+    let template = r#"files.map(|file| file.source().path() ++ ' => ' ++ file.target().path() ++ ' (' ++ file.status() ++ ")\n").join("")"#;
     let output = work_dir.run_jj(["diff", "-T", template]);
     insta::assert_snapshot!(output, @r"
     file2 => file2 (modified)

@@ -32,7 +32,7 @@ use crate::repo_path::RepoPath;
 use crate::repo_path::RepoPathBuf;
 
 /// A collection of CopyRecords.
-#[derive(Default, Debug)]
+#[derive(Default, Debug, Clone)]
 pub struct CopyRecords {
     records: Vec<CopyRecord>,
     // Maps from `source` or `target` to the index of the entry in `records`.

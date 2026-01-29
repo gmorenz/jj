@@ -28,6 +28,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   materialized file in the working copy will no longer be terminated by a
   newline.
 
+* `jj diff -T` now evaluates the template once on a `TreeDiff` instead of on each
+  `TreeDiffEntry`. To get the former behavior use `self.files().map`.
+
 ### Deprecations
 
 * The revset function `diff_contains()` has been renamed to `diff_lines()`.

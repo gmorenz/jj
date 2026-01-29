@@ -2253,7 +2253,7 @@ fn builtin_shortest_id_prefix_methods<'repo>()
 }
 
 /// Pair of trees to be diffed.
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct TreeDiff {
     from_tree: MergedTree,
     to_tree: MergedTree,
@@ -2262,6 +2262,20 @@ pub struct TreeDiff {
 }
 
 impl TreeDiff {
+    pub fn new(
+        from_tree: MergedTree,
+        to_tree: MergedTree,
+        matcher: Rc<dyn Matcher>,
+        copy_records: CopyRecords,
+    ) -> Self {
+        Self {
+            from_tree,
+            to_tree,
+            matcher,
+            copy_records,
+        }
+    }
+
     fn from_commit(
         repo: &dyn Repo,
         commit: &Commit,
